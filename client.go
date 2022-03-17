@@ -101,7 +101,7 @@ func (hec *Client) WriteEventWithContext(ctx context.Context, event *Event) erro
 		return nil // skip empty events
 	}
 
-	endpoint := "/services/collector?channel=" + hec.channel
+	endpoint := "/services/collector/raw?channel=" + hec.channel
 	data, _ := json.Marshal(event)
 
 	if len(data) > hec.maxLength {
@@ -119,7 +119,7 @@ func (hec *Client) WriteBatchWithContext(ctx context.Context, events []*Event) e
 		return nil
 	}
 
-	endpoint := "/services/collector?channel=" + hec.channel
+	endpoint := "/services/collector/raw?channel=" + hec.channel
 	var buffer bytes.Buffer
 	var tooLongs []int
 
